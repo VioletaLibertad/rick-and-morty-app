@@ -1,9 +1,14 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { AppLoading } from 'expo';
-import { Container } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import Home from './src/app/screens/Home'
+import { HOME } from './src/routes';
+import Home from './src/app/screens/Home';
+import { pacificBlue } from './src/constants/colors'
+
+const Stack = createStackNavigator();
 
 class App extends React.Component {
   constructor(props) {
@@ -28,9 +33,21 @@ class App extends React.Component {
     }
 
     return (
-      <Container>
-        <Home />
-      </Container>
+      <NavigationContainer>
+        <Stack.Navigator 
+          screenOptions={{
+            title: 'Rick and Morty Info',
+            headerStyle: {
+              backgroundColor: pacificBlue
+            },
+          }}
+        >
+          <Stack.Screen 
+            name={HOME} 
+            component={Home}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }

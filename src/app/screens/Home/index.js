@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { fetchCharacters } from '../../../services/api';
-import { Container, Header, Left, Right, Title, Content, Body, Spinner } from 'native-base';
+import { Container, Content, Spinner } from 'native-base';
 import CharacterCard from '../../components/CharacterCard';
 import styles from './styles';
 
@@ -24,13 +24,6 @@ function Home() {
 
   return (
     <Container style={styles.container}>
-      <Header style={styles.header}>
-        <Left />
-        <Body>
-          <Title>Rick and Morty</Title>
-        </Body>
-        <Right />
-      </Header>
       <Content style={styles.content}>
         {loading 
           ? <Spinner color='blue' /> 
