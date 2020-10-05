@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { FlatList, Image } from 'react-native';
 import { fetchCharacters } from '../../../services/api';
 import { Container, Header, Left, Right, Title, Content, Card, CardItem, Text, Body, Spinner } from 'native-base';
+import styles from './styles';
 
 function Home() {
   const [allCharacters, setAllCharacters] = useState([])
@@ -13,25 +15,47 @@ function Home() {
   const getCharacters = async () => {
     setLoading(true)
     let data = await fetchCharacters();
-    setAllCharacters(data)
+    setAllCharacters(data.results)
     setLoading(false)
   }
 
-  return (
-    <Container>
-        <Header>
-          <Left />
+  const renderItem = ({ item }) => (
+    <Card>
+      <CardItem>
+        <Left>
           <Body>
-            <Title>Holo</Title>
+            <Text>{item.name}</Text>
+            <Text note>{item.status}</Text>
           </Body>
-          <Right />
-        </Header>
-        <Content>
-          {loading 
-            ? <Spinner /> 
-            : allCharacters?.results.map((char, i) => <Text key={i}>{char.name}</Text>)}
-        </Content>
-      </Container>
+        </Left>
+      </CardItem>
+      <CardItem cardBody>
+        <Image source={{uri: `${item.image}`}} style={{height: 200, width: null, flex: 1}}/>
+      </CardItem>
+    </Card>
+  )
+
+  return (
+    <Container style={styles.container}>
+      <Header style={styles.header}>
+        <Left />
+        <Body>
+          <Title>Rick and Morty</Title>
+        </Body>
+        <Right />
+      </Header>
+      <Content style={styles.content}>
+        {loading 
+          ? <Spinner color='blue' /> 
+          : <FlatList
+              data={allCharacters}
+              renderItem={renderItem}
+            />
+          // : allCharacters?.results.map((char, i) => <Text key={i}>{char.name}</Text>)
+          
+        }
+      </Content>
+    </Container>
   );
 }
 
