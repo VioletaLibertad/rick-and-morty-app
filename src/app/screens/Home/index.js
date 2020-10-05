@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { fetchCharacters } from '../../../services/api';
 import { Container, Content, Spinner } from 'native-base';

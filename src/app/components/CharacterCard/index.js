@@ -1,23 +1,29 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Left, Card, CardItem, Text, Body } from 'native-base';
+import { CHARACTER_DETAIL } from '../../../routes/index';
 import styles from './styles';
 
-const CharacterCard = ({ character: { name, status, image } }) => {
+const CharacterCard = ({ character: { name, status, image, id } }) => {
+  const navigation = useNavigation();
+
   return (
-    <Card>
-      <CardItem>
-        <Left>
-          <Body>
-            <Text>{name}</Text>
-            <Text note>{status}</Text>
-          </Body>
-        </Left>
-      </CardItem>
-      <CardItem cardBody>
-        <Image source={{uri: `${image}`}} style={styles.image}/>
-      </CardItem>
-    </Card>
+    <TouchableOpacity onPress={() => navigation.navigate(CHARACTER_DETAIL, {id: id})}>
+      <Card>
+        <CardItem>
+          <Left>
+            <Body>
+              <Text>{name}</Text>
+              <Text note>{status}</Text>
+            </Body>
+          </Left>
+        </CardItem>
+        <CardItem cardBody>
+          <Image source={{uri: `${image}`}} style={styles.image}/>
+        </CardItem>
+      </Card>
+    </TouchableOpacity>
   )
 };
 

@@ -19,3 +19,21 @@ export const fetchCharacters = async () => {
     return false;
   }
 }
+
+export const fetchSingleCharacter = async (id) => {
+
+  // let response = await fetch(`${baseUrl}character/${id}`)
+  // return await response.json();
+
+  try {
+    let response = await fetch(`${baseUrl}character/${id}`)
+    if (response.ok) {
+      let data = await response.json();
+      return data
+    } else {
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+}

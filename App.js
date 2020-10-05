@@ -4,9 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import { HOME } from './src/routes';
+import * as routes from './src/routes';
 import Home from './src/app/screens/Home';
-import { pacificBlue } from './src/constants/colors'
+import CharacterDetail from './src/app/screens/CharacterDetail';
+import { pacificBlue, black } from './src/constants/colors';
 
 const Stack = createStackNavigator();
 
@@ -40,11 +41,16 @@ class App extends React.Component {
             headerStyle: {
               backgroundColor: pacificBlue
             },
+            headerTintColor: black
           }}
         >
           <Stack.Screen 
-            name={HOME} 
+            name={routes.HOME} 
             component={Home}
+          />
+          <Stack.Screen 
+            name={routes.CHARACTER_DETAIL} 
+            component={CharacterDetail}
           />
         </Stack.Navigator>
       </NavigationContainer>
