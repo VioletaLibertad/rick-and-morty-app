@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Image } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { FlatList } from 'react-native';
 import { fetchCharacters } from '../../../services/api';
-import { Container, Header, Left, Right, Title, Content, Card, CardItem, Text, Body, Spinner } from 'native-base';
+import { Container, Header, Left, Right, Title, Content, Body, Spinner } from 'native-base';
+import CharacterCard from '../../components/CharacterCard';
 import styles from './styles';
 
 function Home() {
@@ -19,21 +20,7 @@ function Home() {
     setLoading(false)
   }
 
-  const renderItem = ({ item }) => (
-    <Card>
-      <CardItem>
-        <Left>
-          <Body>
-            <Text>{item.name}</Text>
-            <Text note>{item.status}</Text>
-          </Body>
-        </Left>
-      </CardItem>
-      <CardItem cardBody>
-        <Image source={{uri: `${item.image}`}} style={{height: 200, width: null, flex: 1}}/>
-      </CardItem>
-    </Card>
-  )
+  const renderItem = ({ item }) => <CharacterCard character={item} />
 
   return (
     <Container style={styles.container}>
@@ -51,8 +38,6 @@ function Home() {
               data={allCharacters}
               renderItem={renderItem}
             />
-          // : allCharacters?.results.map((char, i) => <Text key={i}>{char.name}</Text>)
-          
         }
       </Content>
     </Container>
