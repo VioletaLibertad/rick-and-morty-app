@@ -8,9 +8,9 @@ export const fetchCharacters = async () => {
   // return await response.json();
 
   try {
-    let response = await fetch(`${baseUrl}character`)
+    const response = await fetch(`${baseUrl}character`)
     if (response.ok) {
-      let data = await response.json();
+      const data = await response.json();
       return data
     } else {
       return false;
@@ -26,9 +26,9 @@ export const fetchSingleCharacter = async (id) => {
   // return await response.json();
 
   try {
-    let response = await fetch(`${baseUrl}character/${id.toString()}`)
+    const response = await fetch(`${baseUrl}character/${id.toString()}`)
     if (response.ok) {
-      let data = await response.json();
+      const data = await response.json();
       return data
     } else {
       return false;
