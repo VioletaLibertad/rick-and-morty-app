@@ -20,7 +20,7 @@ const CharacterCard = ({ character: { name, status, image, id } }) => {
           </Left>
         </CardItem>
         <CardItem cardBody>
-          <Image source={{uri: `${image}`}} style={styles.image}/>
+          <Image source={{uri: `${image}`}} style={styles.image} resizeMode='cover'/>
         </CardItem>
       </Card>
     </TouchableOpacity>
