@@ -24,15 +24,13 @@ function Home() {
 
   return (
     <Container style={styles.container}>
-      <Content style={styles.content}>
-        {loading 
-          ? <Spinner color='blue' /> 
-          : <FlatList
-              data={allCharacters}
-              renderItem={renderItem}
-            />
-        }
-      </Content>
+      {loading 
+        ? <Spinner color='blue' /> 
+        : <FlatList
+            data={allCharacters}
+            renderItem={renderItem}
+          />
+      }
     </Container>
   );
 }
